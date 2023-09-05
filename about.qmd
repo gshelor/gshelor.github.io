@@ -1,9 +1,11 @@
 ---
-title: "About"
+title: "About Me"
 ---
 
-About this site
+About Griffin Shelor:
 
-```{r}
-1 + 1
-```
+I am a geographer seeking to use remote sensing and GIS to explore the relationships between snow and our changing climate.
+
+As an undergraduate at Green Mountain College I fell in love with GIS and its power to help provide quality data to support more informed management decisions by stakeholders. I took this passion further when I studied vegetation and water resource disturbance in support of a bison management strategy as part of a NASA DEVELOP project in the summer of 2018. This project both inspired me to begin thinking about the possibility of pursuing graduate research as well as gave me an introduction to the complexities of remote sensing. Over the next 2 years I worked as a Cartographic Technician for the U.S. Census Bureau, gaining an appreciation for social and economic geography as well as the importance of considering how people are impacted by policy. In April 2021 I was able to get back to my environmental roots by joining University of Vermont's Spatial Analysis Lab (SAL). At the SAL I worked on a variety of remote sensing projects, largely urban tree canopy (UTC) and land cover mapping projects. During my last year at the SAL, I was able to lead the editing effort on two wetlands mapping projects. This was a new challenge for me and introduced me to the intricacies of wetlands mapping and project management.
+
+After 2.5 years at the SAL, I am excited to apply my geospatial skills to the field of snow hydrology. I hope to use my research experience that I gain in grad school to obtain subject matter expertise in the field of snow science as well as enhancing my geospatial skills and remote sensing abilities.
