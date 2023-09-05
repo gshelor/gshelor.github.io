@@ -1,11 +1,9 @@
 ---
-title: "gshelor.github.io"
+title: "Griffin Shelor"
 ---
 
 This is a Quarto website.
 
 To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
 
-```{r}
-1 + 1
-```
+This is Griffin Shelor's website. He is mildly proud of it.
