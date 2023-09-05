@@ -1,8 +1,9 @@
 project:
   type: website
+  output-dir: docs
 
 website:
-  title: "gshelor.github.io"
+  title: "Griffin Shelor"
   navbar:
     left:
       - href: index.qmd
