@@ -2,6 +2,13 @@
 title: "Griffin Shelor"
 about:
   template: jolla
+  links:
+    - icon: github
+      text: Github
+      href: https://github.com/gshelor
+    - icon: linkedin
+      text: LinkedIn
+      href: https://www.linkedin.com/in/griffinshelor/
 ---
 
 Welcome to my website! Feel free to read about me and my research as I continue to add more of my professional and personal projects to this website.
