@@ -10,7 +10,7 @@ about:
       text: LinkedIn
       href: https://www.linkedin.com/in/griffinshelor/
     - icon: briefcase
-      text: UNR profile
+      text: UNR Profile
       href: https://www.unr.edu/geography/people/griffin-shelor 
 ---
 
