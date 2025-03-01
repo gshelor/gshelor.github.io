@@ -5,6 +5,7 @@ project:
 website:
   title: "Griffin Shelor"
   navbar:
+    background: "#dddddd"
     left:
       - href: index.qmd
         text: Home
@@ -14,8 +15,9 @@ website:
 
 format:
   html:
-    backgroundcolor: "#041E42"
-    fontcolor: "#FFFFFF"
+    backgroundcolor: "#Fe5c00"
+    fontcolor: "#000000"
+    linkcolor: "#4b2e83"
     theme: cosmo
     css: styles.css
     toc: true

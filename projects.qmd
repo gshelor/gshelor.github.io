@@ -1,3 +1,14 @@
 ---
-title: "Some projects of mine"
+title: "Some Projects of Mine"
 ---
+# Professional/Academic Work
+
+## Masters Thesis: Evaluating the Representation of Snow Sampling Sites in the Western U.S. and Alaska
+
+In progress, but I'll post the abstract here once I can provide some sort of link to the whole thesis.
+
+# Personal Projects
+
+## Vortex of Accuracy
+
+As part of my passion for sports analytics, I made what I call the Vortex of Accuracy (VoA). I call it that because I think it's fun and silly. The VoA is a series of team strength models that I've created for [FBS College Football](https://github.com/gshelor/CFB_VoA) and the [NFL](https://github.com/gshelor/NFL_VoA). These models take a combination of season summary stats and play-by-play data and attempt to approximate the projected win margin for each team against the hypothetical average team in their competition on a neutral field. The code for these models is written in R and Stan.
