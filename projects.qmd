@@ -30,7 +30,9 @@ Maps of Peak SWE in relatively high water years between 1993-2020. The polygons 
 
 ## Mountain Rain or Snow
 
-Mountain Rain or Snow (MRoS) is a NASA-funded citizen science project
+Mountain Rain or Snow (MRoS) is a NASA-funded citizen science project with the goal of improving satelite-based estimations of precipitation phase from the Global Precipitation Monitoring (GPM) mission. Additionally, MRoS aims to utilize crowdsourced data to improve forecasting of winter weather and hazards such as rain-on-snow events and avalanchages, as well as to contribute effective practices for citizen science project design.
+
+In my role with this project, I spent the summers of 2024 and 2025 investigating binary thresholds for precipitation phase delineation based on GPM's Probability of Liquid Precipitation (PLP) data product and examining spatial differences in the accuracy of machine and deep learning models in predicting precipitation phase in mountain ecoregions.
 
 ::: {#fig-MRoSModelAccuracy layout-ncol=2}
 
