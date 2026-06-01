@@ -1,6 +1,6 @@
 ---
 title: "Griffin Shelor"
-image: media/GShelorMountRose.jpg
+image: Media/GShelorMountRose.jpg
 about:
   template: jolla
   image-shape: round

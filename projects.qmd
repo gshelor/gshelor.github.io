@@ -2,13 +2,44 @@
 title: "Projects"
 ---
 
-# Professional/Academic Work
+# Professional & Academic Work
 
 ## Masters Thesis: Evaluating the Representation of Snow Sampling Sites in the Western U.S. and Alaska
 
 The full text can be found [here](https://unr.idm.oclc.org/login?url=https://www.proquest.com/pqdtlocal1006038/dissertations-theses/evaluating-representativeness-snow-sampling-sites/docview/3247618803/sem-2?accountid=452) and below is the abstract.
 
+::: {#fig-AOIs layout-ncol=2}
+
+![Alaska](Media/AKStudyArea.png){#fig-AKAOI}
+
+![Western US](Media/WUSStudyArea.png){#fig-WUSAOI}
+
+Maps of [SNOTEL](https://www.nrcs.usda.gov/resources/data-and-reports/snow-and-climate-monitoring-predefined-reports-and-maps) and [SnowEx](https://snow.nasa.gov/campaigns/snowex) in the Western US and Alaska, shown over an elevation map.
+:::
+
 -   Snowpack is a critical water resource threatened by climate change. This is particularly true in the western United States. NASA’s SnowEx program measured snow cover at numerous sites in the western United States and Alaska in preparation for future space-based missions. These snow cover sites were chosen largely based on snow cover classes created using subjectively defined thresholds. However, there has not been a systematic classification of snow cover in the US or SnowEx sites in terms of variables that affect snow water equivalent (SWE). Random Forest is a machine learning method that uses groups of decision trees to create robust predictions and identify important variables. SHAP (Shapley Additive Explanatory Values) is a modeling framework which uses game theory to evaluate the local importances of different predictors in a model by estimating their contributions in different coalitions of predictors. Using these advanced machine learning methods, I have created new snow cover classifications for the western United States and Alaska based on key predictor variables of peak SWE for Water Years 1993-2020 and assessed the representativeness of SnowEx sites in terms of these classes. These new snow classes are compared with the snow cover classification system created by Sturm and Liston (2021). This work will help NASA identify data gaps and enhance future snow monitoring efforts.
+
+::: {#fig-PeakSWE layout-ncol=2}
+
+![Alaska Peak SWE for 2005](Media/AKmSWE2005_1km.png){#fig-AKPeakSWE}
+
+![Western US Peak SWE for 2011](Media/CONUSmSWE2011.png){#fig-CONUSPeakSWE}
+
+Maps of Peak SWE in relatively high water years between 1993-2020. The polygons are EPA Level III Ecoregions.
+:::
+
+## Mountain Rain or Snow
+
+Mountain Rain or Snow (MRoS) is a NASA-funded citizen science project
+
+::: {#fig-MRoSModelAccuracy layout-ncol=2}
+
+![xgBoost](Media/xgBAllPhaseOverallAccuracyPlot.png){#fig-xgBoostAcc}
+
+![Random Forest](Media/RFAllPhaseOverallAccuracyPlot.png){#fig-RFAcc}
+
+Maps showing accuracy by EPA Level III Ecoregion for machine learning models predicting precipitation phase based on citizen science observations from MRoS
+:::
 
 # Personal Projects
 

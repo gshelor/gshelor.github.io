@@ -10,4 +10,4 @@ As a Masters student at the University of Nevada Reno (UNR), I modeled snow wate
 
 In my free time I enjoy being active outside, playing soccer, volunteering at my local animal shelter, or using R, Python, and/or Stan to create team strength ratings models for basketball and American football.
 
-I'm currently open to opportunities in either geospatial analysis/remote sensing (especially related to snow) or sports analytics and am willing to relocate, so feel free to reach out to me either via email or Linkedin using the buttons on my home page!
+I'm currently open to and actively looking for opportunities in GIS, geospatial analysis, and/or remote sensing and am willing to relocate, so feel free to reach out to me either via email or Linkedin using the buttons on my home page!
