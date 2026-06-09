@@ -19,7 +19,7 @@ website:
         text: CV
     tools:
       - icon: github
-        href: github.com/gshelor
+        href: https://github.com/gshelor
 
 format:
   html:
