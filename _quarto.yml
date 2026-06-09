@@ -4,14 +4,21 @@ project:
 
 website:
   title: "Griffin Shelor"
+  search: false
   navbar:
     background: "#8A8D8F"
     left:
       - href: index.qmd
         text: Home
-      - about.qmd
-      - href: projects.qmd
+        icon: house-door-fill
+      - about/index.qmd
+      - href: projects/index.qmd
         text: Projects
+      - href: media/GShelor_CV.pdf
+        text: CV
+    tools:
+      - icon: github
+        href: github.com/gshelor
 
 format:
   html:

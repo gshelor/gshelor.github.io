@@ -19,4 +19,4 @@ about:
     #   href: https://www.unr.edu/geography/people/griffin-shelor 
 ---
 
-Welcome to my website! Feel free to read about me and my research and previous work!
+Welcome to my website! Feel free to read [about me](about/index.qmd) and my [research and previous work](projects.qmd)!

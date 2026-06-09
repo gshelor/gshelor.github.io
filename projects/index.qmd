@@ -10,9 +10,9 @@ The full text can be found [here](https://unr.idm.oclc.org/login?url=https://www
 
 ::: {#fig-AOIs layout-ncol=2}
 
-![Alaska](media/AKStudyArea.png){#fig-AKAOI}
+![Alaska](../media/AKStudyArea.png){#fig-AKAOI}
 
-![Western US](media/WUSStudyArea.png){#fig-WUSAOI}
+![Western US](../media/WUSStudyArea.png){#fig-WUSAOI}
 
 Maps of [SNOTEL](https://www.nrcs.usda.gov/resources/data-and-reports/snow-and-climate-monitoring-predefined-reports-and-maps) and [SnowEx](https://snow.nasa.gov/campaigns/snowex) in the Western US and Alaska, shown over an elevation map.
 :::
@@ -21,9 +21,9 @@ Maps of [SNOTEL](https://www.nrcs.usda.gov/resources/data-and-reports/snow-and-c
 
 ::: {#fig-PeakSWE layout-ncol=2}
 
-![Alaska Peak SWE for 2005](media/AKmSWE2005_1km.png){#fig-AKPeakSWE}
+![Alaska Peak SWE for 2005](../media/AKmSWE2005_1km.png){#fig-AKPeakSWE}
 
-![Western US Peak SWE for 2011](media/CONUSmSWE2011.png){#fig-CONUSPeakSWE}
+![Western US Peak SWE for 2011](../media/CONUSmSWE2011.png){#fig-CONUSPeakSWE}
 
 Maps of Peak SWE in relatively high water years between 1993-2020. The polygons are EPA Level III Ecoregions.
 :::
@@ -36,9 +36,9 @@ In my role with this project, I spent the summers of 2024 and 2025 investigating
 
 ::: {#fig-MRoSModelAccuracy layout-ncol=2}
 
-![xgBoost](media/xgBAllPhaseOverallAccuracyPlot.png){#fig-xgBoostAcc}
+![xgBoost](../media/xgBAllPhaseOverallAccuracyPlot.png){#fig-xgBoostAcc}
 
-![Random Forest](media/RFAllPhaseOverallAccuracyPlot.png){#fig-RFAcc}
+![Random Forest](../media/RFAllPhaseOverallAccuracyPlot.png){#fig-RFAcc}
 
 Maps showing accuracy by EPA Level III Ecoregion for machine learning models predicting precipitation phase based on citizen science observations from MRoS
 :::
