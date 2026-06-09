@@ -12,8 +12,9 @@ website:
         text: Home
         icon: house-door-fill
       - about/index.qmd
-      - href: projects/index.qmd
-        text: Projects
+      - projects/index.qmd
+      # - href: projects/index.qmd
+        # text: Projects
       - href: media/GShelor_CV.pdf
         text: CV
     tools:
