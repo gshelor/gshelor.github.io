@@ -75,5 +75,12 @@
     "title": "Projects",
     "section": "Vortex of Accuracy",
     "text": "Vortex of Accuracy\nAs part of my passion for sports analytics, I made what I call the Vortex of Accuracy (VoA). I call it that because I think it’s fun and silly, but believe me it is a serious statistical modeling effort. The VoA is a series of team strength models that I’ve created for FBS College Football, the NFL, and Men’s Division 1 College Basketball. These models take a combination of season summary stats and play-by-play data and attempt to approximate the projected win margin for each team against the hypothetical average team in their competition on a neutral field. The code for these models is written in R and Stan."
+  },
+  {
+    "objectID": "VoA/index.html",
+    "href": "VoA/index.html",
+    "title": "Vortex of Accuracy",
+    "section": "",
+    "text": "NFL\n\n\n\n\n\n2026 NFL Vortex of Accuracy\nSupremely Excellent Yet Salaciously Godlike And Infallibly Magnificent Vortex of Accuracy, current as of 2026-06-09\n\n\n\n\n\n\n Table by @gshelor, Data from nflfastR"
   }
 ]

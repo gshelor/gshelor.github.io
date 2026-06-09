@@ -1,0 +1,126 @@
+---
+title: "Vortex of Accuracy"
+execute:
+    echo: false
+    warning: false
+---
+
+# NFL
+
+```{r}
+library(readr)
+library(dplyr)
+library(gt)
+library(gtExtras)
+library(nflplotR)
+library(RColorBrewer)
+```
+
+```{r}
+year <- format(Sys.Date(), "%Y")
+month <- as.integer(format(Sys.Date(), "%m"))
+
+if (month < 9){
+    NFLVoA <- read_csv(paste0("https://raw.githubusercontent.com/gshelor/NFL_VoA/refs/heads/master/Data/VoA", as.integer(year) - 1, "/2025Week22_VoA.csv")) |>
+        select(team, VoA_Rating_Ovr, VoA_Ranking_Ovr, OffVoA_MedRating, OffVoA_Ranking, DefVoA_MedRating, DefVoA_Ranking, STVoA_MedRating, STVoA_Ranking) |>
+        arrange(desc(VoA_Rating_Ovr))
+}
+
+
+### Full table
+# adding title and subtitle
+VoA_Table <- NFLVoA |>
+    gt() |> # use 'gt' to make an awesome table...
+    gt_theme_538() |>
+    tab_header(
+      title = paste(year, "NFL Vortex of Accuracy"), # ...with this title
+      subtitle = paste("Supremely Excellent Yet Salaciously Godlike And Infallibly Magnificent Vortex of Accuracy,", "current as of", as.character(Sys.Date()))
+    ) |> # and this subtitle
+    fmt_number(
+      # A column (numeric data)
+      columns = c(VoA_Rating_Ovr), # What column variable? FinalVoATop25$VoA_Rating
+      decimals = 3 # With four decimal places
+    ) |>
+    fmt_number(
+      # A column (numeric data)
+      columns = c(OffVoA_MedRating), # What column variable? FinalVoATop25$VoA_Rating
+      decimals = 3 # With four decimal places
+    ) |>
+    fmt_number(
+      # A column (numeric data)
+      columns = c(DefVoA_MedRating), # What column variable? FinalVoATop25$VoA_Rating
+      decimals = 3 # With four decimal places
+    ) |>
+    fmt_number(
+      # A column (numeric data)
+      columns = c(STVoA_MedRating), # What column variable? FinalVoATop25$VoA_Rating
+      decimals = 3 # With four decimal places
+    ) |>
+    fmt_number(
+      # Another column (also numeric data)
+      columns = c(VoA_Ranking_Ovr), # What column variable? FinalVoATop25$VoA_Ranking
+      decimals = 0 # I want this column to have zero decimal places
+    ) |>
+    data_color(
+      # Update cell colors, testing different color palettes
+      columns = c(VoA_Rating_Ovr), # ...for dose column
+      fn = scales::col_numeric(
+        # <- bc it's numeric
+        palette = brewer.pal(11, "RdYlGn"), # A color scheme (gradient)
+        domain = c(), # Column scale endpoints
+        reverse = FALSE
+      )
+    ) |>
+    data_color(
+      # Update cell colors, testing different color palettes
+      columns = c(OffVoA_MedRating), # ...for dose column
+      fn = scales::col_numeric(
+        # <- bc it's numeric
+        palette = brewer.pal(11, "RdYlGn"), # A color scheme (gradient)
+        domain = c(), # Column scale endpoints
+        reverse = FALSE
+      )
+    ) |>
+    data_color(
+      # Update cell colors, testing different color palettes
+      columns = c(DefVoA_MedRating), # ...for dose column
+      fn = scales::col_numeric(
+        # <- bc it's numeric
+        palette = brewer.pal(11, "RdYlGn"), # A color scheme (gradient)
+        domain = c(), # Column scale endpoints
+        reverse = TRUE
+      )
+    ) |>
+    data_color(
+      # Update cell colors, testing different color palettes
+      columns = c(STVoA_MedRating), # ...for dose column
+      fn = scales::col_numeric(
+        # <- bc it's numeric
+        palette = brewer.pal(11, "RdYlGn"), # A color scheme (gradient)
+        domain = c(), # Column scale endpoints
+        reverse = FALSE
+      )
+    ) |>
+    gt_nfl_wordmarks(columns = "team") |>
+    cols_label(team = "Team",
+      VoA_Rating_Ovr = "Overall VoA Rating",
+      VoA_Ranking_Ovr = "VoA Ranking",
+      OffVoA_MedRating = "Off VoA Rating",
+      OffVoA_Ranking = "Off Ranking",
+      DefVoA_MedRating = "Def VoA Rating",
+      DefVoA_Ranking = "Def Ranking",
+      STVoA_MedRating = "ST VoA Rating",
+      STVoA_Ranking = "ST Ranking"
+    ) |> # Update labels
+    # cols_move_to_end(columns = "VoA_Rating") |>
+    # cols_hide(c(week, VoA_Output)) |>
+    tab_footnote(
+      footnote = "Table by @gshelor, Data from nflfastR"
+    ) |>
+        opt_interactive(use_pagination = FALSE, page_size_values = c(32))
+
+```
+
+```{r}
+VoA_Table
+```
