@@ -1,5 +1,7 @@
 ---
-title: "Projects"
+title: "Research"
+aliases:
+    - "/projects/index.html"
 ---
 
 # Professional & Academic Work
@@ -43,8 +45,3 @@ In my role with this project, I spent the summers of 2024 and 2025 investigating
 Maps showing accuracy by EPA Level III Ecoregion for machine learning models predicting precipitation phase based on citizen science observations from MRoS
 :::
 
-# Personal Projects
-
-## Vortex of Accuracy
-
-As part of my passion for sports analytics, I made what I call the Vortex of Accuracy (VoA). I call it that because I think it's fun and silly, but believe me it is a serious statistical modeling effort. The VoA is a series of team strength models that I've created for [FBS College Football](https://github.com/gshelor/CFB_VoA), the [NFL](https://github.com/gshelor/NFL_VoA), and [Men's Division 1 College Basketball](https://github.com/gshelor/MCBB_VoA). These models take a combination of season summary stats and play-by-play data and attempt to approximate the projected win margin for each team against the hypothetical average team in their competition on a neutral field. The code for these models is written in R and Stan.

@@ -12,9 +12,20 @@ website:
         text: Home
         icon: house-door-fill
       - about/index.qmd
-      - projects/index.qmd
+      - research/index.qmd
       # - href: projects/index.qmd
         # text: Projects
+      # - href: VoA/index.qmd
+      - text: VoA
+        menu:
+          - text: About the Vortex of Accuracy
+            href: VoA/index.qmd
+          - text: NFL VoA
+            href: VoA/NFL/index.qmd
+          - text: CFB VoA
+            href: VoA/CFB/index.qmd
+          - text: MCBB VoA
+            href: VoA/MCBB/index.qmd
       - href: media/GShelor_CV.pdf
         text: CV
     tools:
@@ -26,7 +37,7 @@ format:
     backgroundcolor: "#041E42"
     fontcolor: "#FFFFFF"
     linkcolor: "#FFC310"
-    theme: cosmo
+    theme: solar
     css: styles.css
     toc: true
 
