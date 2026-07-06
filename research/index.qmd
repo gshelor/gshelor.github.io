@@ -4,9 +4,9 @@ aliases:
     - "/projects/index.html"
 ---
 
-# Professional & Academic Work
+<!-- # Professional & Academic Work -->
 
-## Masters Thesis: Evaluating the Representation of Snow Sampling Sites in the Western U.S. and Alaska
+# Master's Thesis: Evaluating the Representation of Snow Sampling Sites in the Western U.S. and Alaska
 
 The full text can be found [here](https://unr.idm.oclc.org/login?url=https://www.proquest.com/pqdtlocal1006038/dissertations-theses/evaluating-representativeness-snow-sampling-sites/docview/3247618803/sem-2?accountid=452) and below is the abstract.
 
@@ -30,7 +30,7 @@ Maps of [SNOTEL](https://www.nrcs.usda.gov/resources/data-and-reports/snow-and-c
 Maps of Peak SWE in relatively high water years between 1993-2020. The polygons are EPA Level III Ecoregions.
 :::
 
-## Mountain Rain or Snow
+# Mountain Rain or Snow
 
 Mountain Rain or Snow (MRoS) is a NASA-funded citizen science project with the goal of improving satelite-based estimations of precipitation phase from the Global Precipitation Monitoring (GPM) mission. Additionally, MRoS aims to utilize crowdsourced data to improve forecasting of winter weather and hazards such as rain-on-snow events and avalanchages, as well as to contribute effective practices for citizen science project design.
 
