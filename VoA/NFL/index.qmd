@@ -17,18 +17,18 @@ library(htmltools)
 ```
 
 ```{r}
-year <- format(Sys.Date(), "%Y")
+# year <- format(Sys.Date(), "%Y")
 month <- as.integer(format(Sys.Date(), "%m"))
 
-if (month < 9){
-    NFLVoA <- read_csv(paste0("https://raw.githubusercontent.com/gshelor/NFL_VoA/refs/heads/master/Data/VoA", as.integer(year) - 1, "/2025Week22_VoA.csv")) |>
-        select(team, VoA_Rating_Ovr, VoA_Ranking_Ovr, OffVoA_MedRating, OffVoA_Ranking, DefVoA_MedRating, DefVoA_Ranking, STVoA_MedRating, STVoA_Ranking) |>
-        arrange(desc(VoA_Rating_Ovr))
+if (month >= 8){
+  year <- as.integer(format(Sys.Date(), "%Y"))
 } else{
-  NFLVoA <- read_csv(paste0("https://raw.githubusercontent.com/gshelor/NFL_VoA/refs/heads/master/Data/VoA", as.integer(year), "/2025Week22_VoA.csv")) |>
-        select(team, VoA_Rating_Ovr, VoA_Ranking_Ovr, OffVoA_MedRating, OffVoA_Ranking, DefVoA_MedRating, DefVoA_Ranking, STVoA_MedRating, STVoA_Ranking) |>
-        arrange(desc(VoA_Rating_Ovr))
+  year <- as.integer(format(Sys.Date(), "%Y")) - 1
 }
+
+NFLVoA <- read_csv("https://raw.githubusercontent.com/gshelor/NFL_VoA/refs/heads/master/Data/CurrentVoA.csv") |>
+  select(team, VoA_Rating_Ovr, VoA_Ranking_Ovr, OffVoA_MedRating, OffVoA_Ranking, DefVoA_MedRating, DefVoA_Ranking, STVoA_MedRating, STVoA_Ranking) |>
+  arrange(desc(VoA_Rating_Ovr))
 
 
 ### Full table
