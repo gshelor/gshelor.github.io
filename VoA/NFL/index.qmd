@@ -27,7 +27,7 @@ if (month >= 8){
 }
 
 NFLVoA <- read_csv("https://raw.githubusercontent.com/gshelor/NFL_VoA/refs/heads/master/Data/CurrentVoA.csv") |>
-  select(team, VoA_Rating_Ovr, VoA_Ranking_Ovr, OffVoA_MedRating, OffVoA_Ranking, DefVoA_MedRating, DefVoA_Ranking, STVoA_MedRating, STVoA_Ranking) |>
+  select(team, VoA_Rating_Ovr, VoA_Ranking_Ovr, OffVoA_MeanRating, OffVoA_Ranking, DefVoA_MeanRating, DefVoA_Ranking, STVoA_MeanRating, STVoA_Ranking) |>
   arrange(desc(VoA_Rating_Ovr))
 
 
@@ -47,17 +47,17 @@ NFLVoA <- read_csv("https://raw.githubusercontent.com/gshelor/NFL_VoA/refs/heads
 #     ) |>
 #     fmt_number(
 #       # A column (numeric data)
-#       columns = c(OffVoA_MedRating), # What column variable? FinalVoATop25$VoA_Rating
+#       columns = c(OffVoA_MeanRating), # What column variable? FinalVoATop25$VoA_Rating
 #       decimals = 3 # With four decimal places
 #     ) |>
 #     fmt_number(
 #       # A column (numeric data)
-#       columns = c(DefVoA_MedRating), # What column variable? FinalVoATop25$VoA_Rating
+#       columns = c(DefVoA_MeanRating), # What column variable? FinalVoATop25$VoA_Rating
 #       decimals = 3 # With four decimal places
 #     ) |>
 #     fmt_number(
 #       # A column (numeric data)
-#       columns = c(STVoA_MedRating), # What column variable? FinalVoATop25$VoA_Rating
+#       columns = c(STVoA_MeanRating), # What column variable? FinalVoATop25$VoA_Rating
 #       decimals = 3 # With four decimal places
 #     ) |>
 #     fmt_number(
@@ -77,7 +77,7 @@ NFLVoA <- read_csv("https://raw.githubusercontent.com/gshelor/NFL_VoA/refs/heads
 #     ) |>
 #     data_color(
 #       # Update cell colors, testing different color palettes
-#       columns = c(OffVoA_MedRating), # ...for dose column
+#       columns = c(OffVoA_MeanRating), # ...for dose column
 #       fn = scales::col_numeric(
 #         # <- bc it's numeric
 #         palette = brewer.pal(11, "RdYlGn"), # A color scheme (gradient)
@@ -87,7 +87,7 @@ NFLVoA <- read_csv("https://raw.githubusercontent.com/gshelor/NFL_VoA/refs/heads
 #     ) |>
 #     data_color(
 #       # Update cell colors, testing different color palettes
-#       columns = c(DefVoA_MedRating), # ...for dose column
+#       columns = c(DefVoA_MeanRating), # ...for dose column
 #       fn = scales::col_numeric(
 #         # <- bc it's numeric
 #         palette = brewer.pal(11, "RdYlGn"), # A color scheme (gradient)
@@ -97,7 +97,7 @@ NFLVoA <- read_csv("https://raw.githubusercontent.com/gshelor/NFL_VoA/refs/heads
 #     ) |>
 #     data_color(
 #       # Update cell colors, testing different color palettes
-#       columns = c(STVoA_MedRating), # ...for dose column
+#       columns = c(STVoA_MeanRating), # ...for dose column
 #       fn = scales::col_numeric(
 #         # <- bc it's numeric
 #         palette = brewer.pal(11, "RdYlGn"), # A color scheme (gradient)
@@ -109,11 +109,11 @@ NFLVoA <- read_csv("https://raw.githubusercontent.com/gshelor/NFL_VoA/refs/heads
 #     cols_label(team = "Team",
 #       VoA_Rating_Ovr = "Overall VoA Rating",
 #       VoA_Ranking_Ovr = "VoA Ranking",
-#       OffVoA_MedRating = "Off VoA Rating",
+#       OffVoA_MeanRating = "Off VoA Rating",
 #       OffVoA_Ranking = "Off Ranking",
-#       DefVoA_MedRating = "Def VoA Rating",
+#       DefVoA_MeanRating = "Def VoA Rating",
 #       DefVoA_Ranking = "Def Ranking",
-#       STVoA_MedRating = "ST VoA Rating",
+#       STVoA_MeanRating = "ST VoA Rating",
 #       STVoA_Ranking = "ST Ranking"
 #     ) |> # Update labels
 #     # cols_move_to_end(columns = "VoA_Rating") |>
@@ -179,15 +179,15 @@ NFLVoA <- read_csv("https://raw.githubusercontent.com/gshelor/NFL_VoA/refs/heads
 #       VoA_Rating_Ovr   = colDef(name = "Overall VoA Rating", format = colFormat(digits = 3),
 #                                 style = color_scales(FinalTable_Inter, colors = brewer.pal(11, "RdYlGn"))),
       
-#       OffVoA_MedRating = colDef(name = "Off VoA Rating", format = colFormat(digits = 3),
+#       OffVoA_MeanRating = colDef(name = "Off VoA Rating", format = colFormat(digits = 3),
 #                                 style = color_scales(FinalTable_Inter, colors = brewer.pal(11, "RdYlGn"))),
 #       OffVoA_Ranking   = colDef(name = "Off Ranking", format = colFormat(digits = 0)),
       
-#       DefVoA_MedRating = colDef(name = "Def VoA Rating", format = colFormat(digits = 3),
+#       DefVoA_MeanRating = colDef(name = "Def VoA Rating", format = colFormat(digits = 3),
 #                                 style = color_scales(FinalTable_Inter, colors = brewer.pal(11, "RdYlGn"))), 
 #       DefVoA_Ranking   = colDef(name = "Def Ranking", format = colFormat(digits = 0)),
       
-#       STVoA_MedRating  = colDef(name = "ST VoA Rating", format = colFormat(digits = 3),
+#       STVoA_MeanRating  = colDef(name = "ST VoA Rating", format = colFormat(digits = 3),
 #                                 style = color_scales(FinalTable_Inter, colors = brewer.pal(11, "RdYlGn"))),
 #       STVoA_Ranking    = colDef(name = "ST Ranking", format = colFormat(digits = 0))
 #     )
@@ -221,7 +221,7 @@ FinalTable_DT$team <- ifelse(!is.na(FinalTable_DT$team_wordmark),
 # Explicitly select, reorder, and drop columns to replicate cols_hide()
 # Adjust this selection to match your exact column names
 display_df <- FinalTable_DT |>
-  select(team, VoA_Rating_Ovr, VoA_Ranking_Ovr, OffVoA_MedRating, OffVoA_Ranking, DefVoA_MedRating, DefVoA_Ranking, STVoA_MedRating, STVoA_Ranking) |>
+  select(team, VoA_Rating_Ovr, VoA_Ranking_Ovr, OffVoA_MeanRating, OffVoA_Ranking, DefVoA_MeanRating, DefVoA_Ranking, STVoA_MeanRating, STVoA_Ranking) |>
   arrange(desc(VoA_Rating_Ovr))
 
 # 2. Define custom color palettes using RColorBrewer
@@ -239,11 +239,11 @@ VoA_DT_Table <- datatable(
     "Team" = "team",
     "Overall VoA Rating" = "VoA_Rating_Ovr",
     "Overall VoA Ranking" = "VoA_Ranking_Ovr",
-    "Off VoA Rating" = "OffVoA_MedRating",
+    "Off VoA Rating" = "OffVoA_MeanRating",
     "Off VoA Ranking" = "OffVoA_Ranking",
-    "Def VoA Rating" = "DefVoA_MedRating",
+    "Def VoA Rating" = "DefVoA_MeanRating",
     "Def VoA Ranking" = "DefVoA_Ranking",
-    "ST VoA Rating" = "STVoA_MedRating",
+    "ST VoA Rating" = "STVoA_MeanRating",
     "ST VoA Ranking" = "STVoA_Ranking"
   ),
   caption = htmltools::tags$caption(
@@ -270,7 +270,7 @@ VoA_DT_Table <- datatable(
   )
 ) |>
   # Round formatting
-  formatRound(columns = c(which(colnames(display_df) == "VoA_Rating_Ovr"), which(colnames(display_df) == "OffVoA_MedRating"), which(colnames(display_df) == "DefVoA_MedRating"), which(colnames(display_df) == "STVoA_MedRating")), digits = 3) |>
+  formatRound(columns = c(which(colnames(display_df) == "VoA_Rating_Ovr"), which(colnames(display_df) == "OffVoA_MeanRating"), which(colnames(display_df) == "DefVoA_MeanRating"), which(colnames(display_df) == "STVoA_MeanRating")), digits = 3) |>
   formatRound(columns = c(which(colnames(display_df) == "VoA_Ranking_Ovr"), which(colnames(display_df) == "OffVoA_Ranking"), which(colnames(display_df) == "DefVoA_Ranking"), which(colnames(display_df) == "STVoA_Ranking")), digits = 0) |>
   
   # Apply data color scales matching your original logic
@@ -282,23 +282,23 @@ VoA_DT_Table <- datatable(
     )
   ) |>
   formatStyle(
-    which(colnames(display_df) == "OffVoA_MedRating"),
+    which(colnames(display_df) == "OffVoA_MeanRating"),
     backgroundColor = styleInterval(
-      seq(min(display_df$OffVoA_MedRating, na.rm=TRUE), max(display_df$OffVoA_MedRating, na.rm=TRUE), length.out = 10),
+      seq(min(display_df$OffVoA_MeanRating, na.rm=TRUE), max(display_df$OffVoA_MeanRating, na.rm=TRUE), length.out = 10),
       brewer.pal(11, "RdYlGn")
     )
   ) |>
   formatStyle(
-    which(colnames(display_df) == "DefVoA_MedRating"),
+    which(colnames(display_df) == "DefVoA_MeanRating"),
     backgroundColor = styleInterval(
-      seq(min(display_df$DefVoA_MedRating, na.rm=TRUE), max(display_df$DefVoA_MedRating, na.rm=TRUE), length.out = 10),
+      seq(min(display_df$DefVoA_MeanRating, na.rm=TRUE), max(display_df$DefVoA_MeanRating, na.rm=TRUE), length.out = 10),
       rev(brewer.pal(11, "RdYlGn")) # Reversed for defense
     )
   ) |>
   formatStyle(
-    which(colnames(display_df) == "STVoA_MedRating"),
+    which(colnames(display_df) == "STVoA_MeanRating"),
     backgroundColor = styleInterval(
-      seq(min(display_df$STVoA_MedRating, na.rm=TRUE), max(display_df$STVoA_MedRating, na.rm=TRUE), length.out = 10),
+      seq(min(display_df$STVoA_MeanRating, na.rm=TRUE), max(display_df$STVoA_MeanRating, na.rm=TRUE), length.out = 10),
       brewer.pal(11, "RdYlGn")
     )
   )
