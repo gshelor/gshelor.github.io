@@ -16,7 +16,7 @@ library(htmltools)
 ```
 
 ```{r}
-year <- format(Sys.Date(), "%Y")
+# year <- format(Sys.Date(), "%Y")
 month <- as.integer(format(Sys.Date(), "%m"))
 
 if (month >= 8){
@@ -31,6 +31,10 @@ FBSVoA <- read_csv("https://raw.githubusercontent.com/gshelor/CFB_VoA/refs/heads
 
 FCSVoA <- read_csv("https://raw.githubusercontent.com/gshelor/CFB_VoA/refs/heads/master/Data/CurrentFCSVoA.csv") |>
   select(school, VoA_Rating_Ovr, VoA_Ranking_Ovr, OffVoA_MeanRating, OffVoA_Ranking, DefVoA_MeanRating, DefVoA_Ranking, STVoA_MeanRating, STVoA_Ranking) |>
+  arrange(desc(VoA_Rating_Ovr))
+
+AllD1VoA <- read_csv("https://raw.githubusercontent.com/gshelor/CFB_VoA/refs/heads/master/Data/CurrentAllD1VoA.csv") |>
+  select(school, VoA_Rating_Ovr, VoA_Ranking_Ovr) |>
   arrange(desc(VoA_Rating_Ovr))
 
 ```
@@ -463,7 +467,138 @@ htmltools::div(
   #          overflow-x: hidden;      /* Hard-safeguard to kill accidental scroll bars */",
   VoA_DT_Table,
   htmltools::tags$p(style = 'font-size: 11px; color: #777; font-family: "Helvetica Neue", sans-serif; margin-top: 10px;', 
-                    paste("FBS ratings and FCS ratings are not meant to be compared directly. Table by Griffin Shelor, data from CFBfastR.", "Ratings current as of", as.character(Sys.Date())))
+                    paste("Table by Griffin Shelor, data from CFBfastR.", "Ratings current as of", as.character(Sys.Date())))
+)
+
+```
+
+
+# All D1 Vortex of Accuracy
+VoA Ratings here adjusted to reflect general differences between FBS and FCS
+
+```{r}
+#| column: page
+
+### Prep data and grab school wordmarks
+## this is not the package for that, I did a find and replace for nfl and replaced it with cfb so that's gonna produce some issues here for sure
+## there may not be a way to do this, I don't think cfbplotR is as friendly to table stuff as nflplotR and nflFastR are, especially outside of gt
+## the school names are actual words instead of just 3 letter acronyms so I'm not as upset about it here as I would be for the NFL VoA
+# school_urls <- CFBfastR::schools_colors_logos[, c("school_abbr", "school_wordmark")]
+
+### Join the wordmark URLs to your dataset
+# AllD1VoA <- merge(AllD1VoA, school_urls, by.x = "school", by.y = "school_abbr", all.x = TRUE) |>
+#   arrange(desc(VoA_Rating_Ovr))
+
+### Convert markdown style/images into raw HTML strings for DT to render
+# AllD1VoA$school <- ifelse(!is.na(AllD1VoA$school_wordmark),
+#                              paste0("<img src='", AllD1VoA$school_wordmark, "' height='25' style='vertical-align: middle;'>"),
+#                              AllD1VoA$school)
+
+### Explicitly select, reorder, and drop columns to replicate cols_hide()
+AllD1_display_df <- AllD1VoA |>
+  select(school, VoA_Rating_Ovr, VoA_Ranking_Ovr) |> #, OffVoA_MeanRating, OffVoA_Ranking, DefVoA_MeanRating, DefVoA_Ranking, STVoA_MeanRating, STVoA_Ranking) |>
+  arrange(desc(VoA_Rating_Ovr))
+
+# 2. Define custom color palettes using RColorBrewer
+# DT style helper expects a vector of colors and a corresponding vector of intervals
+# rdylgn_pal <- brewer.pal(11, "RdYlGn")
+# rdylgn_pal_rev <- rev(rdylgn_pal) # For defense where lower/different is better
+
+# 3. Create the interactive DataTable
+VoA_DT_Table <- datatable(
+  AllD1_display_df,
+  width = '100%',
+  escape = FALSE, # CRITICAL: Allows the <img> tags to render as images instead of text strings
+  rownames = FALSE,
+  colnames = c(
+    "School" = "school",
+    "Overall VoA Rating" = "VoA_Rating_Ovr",
+    "Overall VoA Ranking" = "VoA_Ranking_Ovr"#,
+    # "Off VoA Rating" = "OffVoA_MeanRating",
+    # "Off VoA Ranking" = "OffVoA_Ranking",
+    # "Def VoA Rating" = "DefVoA_MeanRating",
+    # "Def VoA Ranking" = "DefVoA_Ranking",
+    # "ST VoA Rating" = "STVoA_MeanRating",
+    # "ST VoA Ranking" = "STVoA_Ranking"
+  ),
+  caption = htmltools::tags$caption(
+    style = 'caption-side: top; text-align: left; color: #333; font-family: "Helvetica Neue", Arial, sans-serif;',
+    htmltools::tags$h2(style = 'margin-bottom: 0px; font-weight: bold;', paste(year, "D1 CFB Vortex of Accuracy")),
+    htmltools::tags$p(style = 'color: #555; font-style: italic; margin-top: 5px; margin-bottom: 15px;', 
+      "Supremely Excellent Yet Salaciously Godlike And Infallibly Magnificent Vortex of Accuracy")
+  ),
+  options = list(
+    # dom = "t",
+    pageLength = 50,
+    searching = TRUE,
+    paging = TRUE,
+    order = list(1, 'desc'), # Pre-sort by VoA_Ranking_Ovr (0-indexed, so 1 is the second column)
+    # Replicating the clean, minimalist 538 aesthetic via DOM styling classes
+    autoWidth = TRUE,
+    initComplete = JS(
+      "function(settings, json) {",
+      "$(this.api().table().header()).css({'font-family': 'Helvetica Neue, Arial, sans-serif', 'font-size': '12px', 'text-transform': 'uppercase', 'color': '#333'});",
+      "$(this.api().table().body()).css({'font-family': 'Helvetica Neue, Arial, sans-serif', 'font-size': '14px'});",
+      "$(this.api().table().node()).css({'background-color': 'transparent', 'width': '100%', 'table-layout': 'fixed'});",
+      "}"
+    )
+  )
+) |>
+  # Round formatting
+  formatRound(columns = c(which(colnames(AllD1_display_df) == "VoA_Rating_Ovr")), digits = 3) |> #, which(colnames(AllD1_display_df) == "OffVoA_MeanRating"), which(colnames(AllD1_display_df) == "DefVoA_MeanRating"), which(colnames(AllD1_display_df) == "STVoA_MeanRating")), digits = 3) |>
+  formatRound(columns = c(which(colnames(AllD1_display_df) == "VoA_Ranking_Ovr")), digits = 0) |> #, which(colnames(AllD1_display_df) == "OffVoA_Ranking"), which(colnames(AllD1_display_df) == "DefVoA_Ranking"), which(colnames(AllD1_display_df) == "STVoA_Ranking")), digits = 0) |>
+  
+  # Apply data color scales matching your original logic
+  formatStyle(
+    which(colnames(AllD1_display_df) == "VoA_Rating_Ovr"),
+    backgroundColor = styleInterval(
+      seq(min(AllD1_display_df$VoA_Rating_Ovr, na.rm=TRUE), max(AllD1_display_df$VoA_Rating_Ovr, na.rm=TRUE), length.out = 10),
+      brewer.pal(11, "RdYlGn")
+    )
+  ) #|>
+  # formatStyle(
+  #   which(colnames(AllD1_display_df) == "OffVoA_MeanRating"),
+  #   backgroundColor = styleInterval(
+  #     seq(min(AllD1_display_df$OffVoA_MeanRating, na.rm=TRUE), max(AllD1_display_df$OffVoA_MeanRating, na.rm=TRUE), length.out = 10),
+  #     brewer.pal(11, "RdYlGn")
+  #   )
+  # ) |>
+  # formatStyle(
+  #   which(colnames(AllD1_display_df) == "DefVoA_MeanRating"),
+  #   backgroundColor = styleInterval(
+  #     seq(min(AllD1_display_df$DefVoA_MeanRating, na.rm=TRUE), max(AllD1_display_df$DefVoA_MeanRating, na.rm=TRUE), length.out = 10),
+  #     rev(brewer.pal(11, "RdYlGn")) # Reversed for defense
+  #   )
+  # ) |>
+  # formatStyle(
+  #   which(colnames(AllD1_display_df) == "STVoA_MeanRating"),
+  #   backgroundColor = styleInterval(
+  #     seq(min(AllD1_display_df$STVoA_MeanRating, na.rm=TRUE), max(AllD1_display_df$STVoA_MeanRating, na.rm=TRUE), length.out = 10),
+  #     brewer.pal(11, "RdYlGn")
+  #   )
+  # )
+
+# Add your footnote container at the bottom
+htmltools::div(
+  style = "background-color: #ffffff; 
+           padding: 25px; 
+           border-radius: 8px; 
+           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); 
+           max-width: 150%; 
+           margin: 20px auto; 
+           box-sizing: border-box;",
+  # style = "background-color: #ffffff; 
+  #          padding: 25px; 
+  #          border-radius: 8px; 
+  #          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); 
+  #          width: 100%;             /* Fits perfectly inside Quarto containers */
+  #          max-width: 1200px;       /* Keeps it clean on extra ultra-wide monitors */
+  #          margin: 20px auto; 
+  #          box-sizing: border-box;  /* Ensures padding doesn't push width over 100% */
+  #          overflow-x: hidden;      /* Hard-safeguard to kill accidental scroll bars */",
+  VoA_DT_Table,
+  htmltools::tags$p(style = 'font-size: 11px; color: #777; font-family: "Helvetica Neue", sans-serif; margin-top: 10px;', 
+                    paste("FBS ratings and AllD1 ratings are not meant to be compared directly. Table by Griffin Shelor, data from CFBfastR.", "Ratings current as of", as.character(Sys.Date())))
 )
 
 ```
