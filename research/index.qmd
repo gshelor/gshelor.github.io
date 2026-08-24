@@ -25,7 +25,7 @@ Maps of [SNOTEL](https://www.nrcs.usda.gov/resources/data-and-reports/snow-and-c
 
 ![Alaska Peak SWE for 2005](../media/AKmSWE2005_1km.png){#fig-AKPeakSWE}
 
-![Western US Peak SWE for 2011](../media/CONUSmSWE2011.png){#fig-CONUSPeakSWE}
+![Western US Peak SWE for 2011](../media/CONUSmSWE2011_1km.png){#fig-CONUSPeakSWE}
 
 Maps of Peak SWE in relatively high water years between 1993-2020. The polygons are EPA Level III Ecoregions.
 :::
