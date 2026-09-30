@@ -5,6 +5,8 @@ execute:
     warning: false
 ---
 
+Overall Ratings are intended to represent the number of points that a given team would be expected to beat the hypothetical average NFL team on a neutral field. To calculate the expected margin between 2 specific teams, subtract the overall ratings from each other. If the game is not on a neutral field, add ~2 points to the home team's rating to account for home field advantage.
+
 ```{r}
 library(readr)
 library(dplyr)

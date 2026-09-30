@@ -1,9 +1,11 @@
 ---
-title: "CFB Vortex of Accuracy Ratings"
+title: "NCAA D1 College Football Vortex of Accuracy Ratings"
 execute:
     echo: false
     warning: false
 ---
+
+FBS ratings and FCS ratings are modeled separately, then adjusted using a mixed-effects model to create the final table at the bottom of this page. Overall Ratings are intended to represent the number of points that a given team would be expected to beat the hypothetical average team for that subdivision (or for all D1 teams is looking at the bottom table containing adjusted ratings for all of NCAA Division 1 CFB) on a neutral field. To calculate the expected margin between 2 specific teams, subtract the overall ratings from each other. If the game is not on a neutral field, add ~2.5 points to the home team's rating to account for home field advantage.
 
 ```{r}
 library(readr)

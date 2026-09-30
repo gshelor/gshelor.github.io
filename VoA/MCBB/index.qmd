@@ -1,5 +1,5 @@
 ---
-title: "D1 MCBB Vortex of Accuracy Ratings"
+title: "NCAA D1 Men's College Basketball Vortex of Accuracy Ratings"
 execute:
     echo: false
     warning: false
