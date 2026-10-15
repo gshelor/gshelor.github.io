@@ -22,16 +22,27 @@ library(htmltools)
 # year <- format(Sys.Date(), "%Y")
 month <- as.integer(format(Sys.Date(), "%m"))
 
-if (month >= 8){
+if (month >= 8) {
   year <- as.integer(format(Sys.Date(), "%Y"))
-} else{
+} else {
   year <- as.integer(format(Sys.Date(), "%Y")) - 1
 }
 
-NFLVoA <- read_csv("https://raw.githubusercontent.com/gshelor/NFL_VoA/refs/heads/master/Data/CurrentVoA.csv") |>
-  select(team, VoA_Rating_Ovr, VoA_Ranking_Ovr, OffVoA_MeanRating, OffVoA_Ranking, DefVoA_MeanRating, DefVoA_Ranking, STVoA_MeanRating, STVoA_Ranking) |>
+NFLVoA <- read_csv(
+  "https://raw.githubusercontent.com/gshelor/NFL_VoA/refs/heads/master/Data/CurrentVoA.csv"
+) |>
+  select(
+    team,
+    VoA_Rating_Ovr,
+    VoA_Ranking_Ovr,
+    OffVoA_MeanRating,
+    OffVoA_Ranking,
+    DefVoA_MeanRating,
+    DefVoA_Ranking,
+    STVoA_MeanRating,
+    STVoA_Ranking
+  ) |>
   arrange(desc(VoA_Rating_Ovr))
-
 
 ### Full table
 # adding title and subtitle
@@ -175,20 +186,20 @@ NFLVoA <- read_csv("https://raw.githubusercontent.com/gshelor/NFL_VoA/refs/heads
 #       ),
 #       # Drop wordmark url from display
 #       team_wordmark = colDef(show = FALSE),
-      
+
 #       # Replicate format, colors, and headers
 #       VoA_Ranking_Ovr  = colDef(name = "VoA Ranking", format = colFormat(digits = 0)),
 #       VoA_Rating_Ovr   = colDef(name = "Overall VoA Rating", format = colFormat(digits = 3),
 #                                 style = color_scales(FinalTable_Inter, colors = brewer.pal(11, "RdYlGn"))),
-      
+
 #       OffVoA_MeanRating = colDef(name = "Off VoA Rating", format = colFormat(digits = 3),
 #                                 style = color_scales(FinalTable_Inter, colors = brewer.pal(11, "RdYlGn"))),
 #       OffVoA_Ranking   = colDef(name = "Off Ranking", format = colFormat(digits = 0)),
-      
+
 #       DefVoA_MeanRating = colDef(name = "Def VoA Rating", format = colFormat(digits = 3),
-#                                 style = color_scales(FinalTable_Inter, colors = brewer.pal(11, "RdYlGn"))), 
+#                                 style = color_scales(FinalTable_Inter, colors = brewer.pal(11, "RdYlGn"))),
 #       DefVoA_Ranking   = colDef(name = "Def Ranking", format = colFormat(digits = 0)),
-      
+
 #       STVoA_MeanRating  = colDef(name = "ST VoA Rating", format = colFormat(digits = 3),
 #                                 style = color_scales(FinalTable_Inter, colors = brewer.pal(11, "RdYlGn"))),
 #       STVoA_Ranking    = colDef(name = "ST Ranking", format = colFormat(digits = 0))
@@ -196,7 +207,7 @@ NFLVoA <- read_csv("https://raw.githubusercontent.com/gshelor/NFL_VoA/refs/heads
 #   ) |>
 #   # 3. Add titles and footnotes via reactablefmtr
 #   add_title(title = paste(year, "NFL Vortex of Accuracy"), font_size = 26, font_weight = "bold") |>
-#   add_subtitle(subtitle = paste("Supremely Excellent Yet Salaciously Godlike And Infallibly Magnificent Vortex of Accuracy,", "current as of", as.character(Sys.Date())), 
+#   add_subtitle(subtitle = paste("Supremely Excellent Yet Salaciously Godlike And Infallibly Magnificent Vortex of Accuracy,", "current as of", as.character(Sys.Date())),
 #                font_size = 14, font_style = "italic", font_color = "#555") |>
 #   add_source("Table by @gshelor, Data from nflfastR", font_size = 12)
 
@@ -208,22 +219,44 @@ NFLVoA <- read_csv("https://raw.githubusercontent.com/gshelor/NFL_VoA/refs/heads
 ```{r}
 #| column: page
 
-# 1. Prep data and grab team wordmarks
+### grab team wordmarks to use URLs to display wordmarks for each team in table
 team_urls <- nflfastR::teams_colors_logos[, c("team_abbr", "team_wordmark")]
 
 # Join the wordmark URLs to your final dataset if they aren't already there
-FinalTable_DT <- merge(NFLVoA, team_urls, by.x = "team", by.y = "team_abbr", all.x = TRUE) |>
+FinalTable_DT <- merge(
+  NFLVoA,
+  team_urls,
+  by.x = "team",
+  by.y = "team_abbr",
+  all.x = TRUE
+) |>
   arrange(desc(VoA_Rating_Ovr))
 
-# Convert markdown style/images into raw HTML strings for DT to render
-FinalTable_DT$team <- ifelse(!is.na(FinalTable_DT$team_wordmark),
-                             paste0("<img src='", FinalTable_DT$team_wordmark, "' height='25' style='vertical-align: middle;'>"),
-                             FinalTable_DT$team)
+### Convert markdown style/images into raw HTML strings for DT to render
+FinalTable_DT$team <- ifelse(
+  !is.na(FinalTable_DT$team_wordmark),
+  paste0(
+    "<img src='",
+    FinalTable_DT$team_wordmark,
+    "' height='25' style='vertical-align: middle;'>"
+  ),
+  FinalTable_DT$team
+)
 
 # Explicitly select, reorder, and drop columns to replicate cols_hide()
 # Adjust this selection to match your exact column names
 display_df <- FinalTable_DT |>
-  select(team, VoA_Rating_Ovr, VoA_Ranking_Ovr, OffVoA_MeanRating, OffVoA_Ranking, DefVoA_MeanRating, DefVoA_Ranking, STVoA_MeanRating, STVoA_Ranking) |>
+  select(
+    team,
+    VoA_Rating_Ovr,
+    VoA_Ranking_Ovr,
+    OffVoA_MeanRating,
+    OffVoA_Ranking,
+    DefVoA_MeanRating,
+    DefVoA_Ranking,
+    STVoA_MeanRating,
+    STVoA_Ranking
+  ) |>
   arrange(desc(VoA_Rating_Ovr))
 
 # 2. Define custom color palettes using RColorBrewer
@@ -250,8 +283,12 @@ VoA_DT_Table <- datatable(
   ),
   caption = htmltools::tags$caption(
     style = 'caption-side: top; text-align: left; color: #333; font-family: "Helvetica Neue", Arial, sans-serif;',
-    htmltools::tags$h2(style = 'margin-bottom: 0px; font-weight: bold;', paste(year, "NFL Vortex of Accuracy"))),#,
-  #   htmltools::tags$p(style = 'color: #555; font-style: italic; margin-top: 5px; margin-bottom: 15px;', 
+    htmltools::tags$h2(
+      style = 'margin-bottom: 0px; font-weight: bold;',
+      paste(year, "NFL Vortex of Accuracy")
+    )
+  ), #,
+  #   htmltools::tags$p(style = 'color: #555; font-style: italic; margin-top: 5px; margin-bottom: 15px;',
   #     "Supremely Excellent Yet Salaciously Godlike And Infallibly Magnificent Vortex of Accuracy")
   # ),
   options = list(
@@ -272,35 +309,67 @@ VoA_DT_Table <- datatable(
   )
 ) |>
   # Round formatting
-  formatRound(columns = c(which(colnames(display_df) == "VoA_Rating_Ovr"), which(colnames(display_df) == "OffVoA_MeanRating"), which(colnames(display_df) == "DefVoA_MeanRating"), which(colnames(display_df) == "STVoA_MeanRating")), digits = 3) |>
-  formatRound(columns = c(which(colnames(display_df) == "VoA_Ranking_Ovr"), which(colnames(display_df) == "OffVoA_Ranking"), which(colnames(display_df) == "DefVoA_Ranking"), which(colnames(display_df) == "STVoA_Ranking")), digits = 0) |>
-  
+  formatRound(
+    columns = c(
+      which(colnames(display_df) == "VoA_Rating_Ovr"),
+      which(colnames(display_df) == "OffVoA_MeanRating"),
+      which(colnames(display_df) == "DefVoA_MeanRating"),
+      which(colnames(display_df) == "STVoA_MeanRating")
+    ),
+    digits = 3
+  ) |>
+  formatRound(
+    columns = c(
+      which(colnames(display_df) == "VoA_Ranking_Ovr"),
+      which(colnames(display_df) == "OffVoA_Ranking"),
+      which(colnames(display_df) == "DefVoA_Ranking"),
+      which(colnames(display_df) == "STVoA_Ranking")
+    ),
+    digits = 0
+  ) |>
+
   # Apply data color scales matching your original logic
   formatStyle(
     which(colnames(display_df) == "VoA_Rating_Ovr"),
     backgroundColor = styleInterval(
-      seq(min(display_df$VoA_Rating_Ovr, na.rm=TRUE), max(display_df$VoA_Rating_Ovr, na.rm=TRUE), length.out = 10),
+      seq(
+        min(display_df$VoA_Rating_Ovr, na.rm = TRUE),
+        max(display_df$VoA_Rating_Ovr, na.rm = TRUE),
+        length.out = 10
+      ),
       brewer.pal(11, "RdYlGn")
     )
   ) |>
   formatStyle(
     which(colnames(display_df) == "OffVoA_MeanRating"),
     backgroundColor = styleInterval(
-      seq(min(display_df$OffVoA_MeanRating, na.rm=TRUE), max(display_df$OffVoA_MeanRating, na.rm=TRUE), length.out = 10),
+      seq(
+        min(display_df$OffVoA_MeanRating, na.rm = TRUE),
+        max(display_df$OffVoA_MeanRating, na.rm = TRUE),
+        length.out = 10
+      ),
       brewer.pal(11, "RdYlGn")
     )
   ) |>
   formatStyle(
     which(colnames(display_df) == "DefVoA_MeanRating"),
     backgroundColor = styleInterval(
-      seq(min(display_df$DefVoA_MeanRating, na.rm=TRUE), max(display_df$DefVoA_MeanRating, na.rm=TRUE), length.out = 10),
+      seq(
+        min(display_df$DefVoA_MeanRating, na.rm = TRUE),
+        max(display_df$DefVoA_MeanRating, na.rm = TRUE),
+        length.out = 10
+      ),
       rev(brewer.pal(11, "RdYlGn")) # Reversed for defense
     )
   ) |>
   formatStyle(
     which(colnames(display_df) == "STVoA_MeanRating"),
     backgroundColor = styleInterval(
-      seq(min(display_df$STVoA_MeanRating, na.rm=TRUE), max(display_df$STVoA_MeanRating, na.rm=TRUE), length.out = 10),
+      seq(
+        min(display_df$STVoA_MeanRating, na.rm = TRUE),
+        max(display_df$STVoA_MeanRating, na.rm = TRUE),
+        length.out = 10
+      ),
       brewer.pal(11, "RdYlGn")
     )
   )
@@ -314,18 +383,23 @@ htmltools::div(
            max-width: 150%; 
            margin: 20px auto; 
            box-sizing: border-box;",
-  # style = "background-color: #ffffff; 
-  #          padding: 25px; 
-  #          border-radius: 8px; 
-  #          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); 
+  # style = "background-color: #ffffff;
+  #          padding: 25px;
+  #          border-radius: 8px;
+  #          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   #          width: 100%;             /* Fits perfectly inside Quarto containers */
   #          max-width: 1200px;       /* Keeps it clean on extra ultra-wide monitors */
-  #          margin: 20px auto; 
+  #          margin: 20px auto;
   #          box-sizing: border-box;  /* Ensures padding doesn't push width over 100% */
   #          overflow-x: hidden;      /* Hard-safeguard to kill accidental scroll bars */",
   VoA_DT_Table,
-  htmltools::tags$p(style = 'font-size: 11px; color: #777; font-family: "Helvetica Neue", sans-serif; margin-top: 10px;', 
-                    paste("Table by Griffin Shelor, data from nflfastR.", "Ratings current as of", as.character(Sys.Date())))
+  htmltools::tags$p(
+    style = 'font-size: 11px; color: #777; font-family: "Helvetica Neue", sans-serif; margin-top: 10px;',
+    paste(
+      "Table by Griffin Shelor, data from nflfastR.",
+      "Ratings current as of",
+      as.character(Sys.Date())
+    )
+  )
 )
-
 ```

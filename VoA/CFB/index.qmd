@@ -21,24 +21,49 @@ library(htmltools)
 # year <- format(Sys.Date(), "%Y")
 month <- as.integer(format(Sys.Date(), "%m"))
 
-if (month >= 8){
+if (month >= 8) {
   year <- as.integer(format(Sys.Date(), "%Y"))
-} else{
+} else {
   year <- as.integer(format(Sys.Date(), "%Y")) - 1
 }
 
-FBSVoA <- read_csv("https://raw.githubusercontent.com/gshelor/CFB_VoA/refs/heads/master/Data/CurrentFBSVoA.csv") |>
-  select(school, VoA_Rating_Ovr, VoA_Ranking_Ovr, OffVoA_MeanRating, OffVoA_Ranking, DefVoA_MeanRating, DefVoA_Ranking, STVoA_MeanRating, STVoA_Ranking) |>
+FBSVoA <- read_csv(
+  "https://raw.githubusercontent.com/gshelor/CFB_VoA/refs/heads/master/Data/CurrentFBSVoA.csv"
+) |>
+  select(
+    school,
+    VoA_Rating_Ovr,
+    VoA_Ranking_Ovr,
+    OffVoA_MeanRating,
+    OffVoA_Ranking,
+    DefVoA_MeanRating,
+    DefVoA_Ranking,
+    STVoA_MeanRating,
+    STVoA_Ranking
+  ) |>
   arrange(desc(VoA_Rating_Ovr))
 
-FCSVoA <- read_csv("https://raw.githubusercontent.com/gshelor/CFB_VoA/refs/heads/master/Data/CurrentFCSVoA.csv") |>
-  select(school, VoA_Rating_Ovr, VoA_Ranking_Ovr, OffVoA_MeanRating, OffVoA_Ranking, DefVoA_MeanRating, DefVoA_Ranking, STVoA_MeanRating, STVoA_Ranking) |>
+FCSVoA <- read_csv(
+  "https://raw.githubusercontent.com/gshelor/CFB_VoA/refs/heads/master/Data/CurrentFCSVoA.csv"
+) |>
+  select(
+    school,
+    VoA_Rating_Ovr,
+    VoA_Ranking_Ovr,
+    OffVoA_MeanRating,
+    OffVoA_Ranking,
+    DefVoA_MeanRating,
+    DefVoA_Ranking,
+    STVoA_MeanRating,
+    STVoA_Ranking
+  ) |>
   arrange(desc(VoA_Rating_Ovr))
 
-AllD1VoA <- read_csv("https://raw.githubusercontent.com/gshelor/CFB_VoA/refs/heads/master/Data/CurrentAllD1VoA.csv") |>
+AllD1VoA <- read_csv(
+  "https://raw.githubusercontent.com/gshelor/CFB_VoA/refs/heads/master/Data/CurrentAllD1VoA.csv"
+) |>
   select(school, VoA_Rating_Ovr, VoA_Ranking_Ovr) |>
   arrange(desc(VoA_Rating_Ovr))
-
 ```
 
 
@@ -185,20 +210,20 @@ AllD1VoA <- read_csv("https://raw.githubusercontent.com/gshelor/CFB_VoA/refs/hea
 #       ),
 #       # Drop wordmark url from display
 #       school_wordmark = colDef(show = FALSE),
-      
+
 #       # Replicate format, colors, and headers
 #       VoA_Ranking_Ovr  = colDef(name = "VoA Ranking", format = colFormat(digits = 0)),
 #       VoA_Rating_Ovr   = colDef(name = "Overall VoA Rating", format = colFormat(digits = 3),
 #                                 style = color_scales(FinalTable_Inter, colors = brewer.pal(11, "RdYlGn"))),
-      
+
 #       OffVoA_MeanRating = colDef(name = "Off VoA Rating", format = colFormat(digits = 3),
 #                                 style = color_scales(FinalTable_Inter, colors = brewer.pal(11, "RdYlGn"))),
 #       OffVoA_Ranking   = colDef(name = "Off Ranking", format = colFormat(digits = 0)),
-      
+
 #       DefVoA_MeanRating = colDef(name = "Def VoA Rating", format = colFormat(digits = 3),
-#                                 style = color_scales(FinalTable_Inter, colors = brewer.pal(11, "RdYlGn"))), 
+#                                 style = color_scales(FinalTable_Inter, colors = brewer.pal(11, "RdYlGn"))),
 #       DefVoA_Ranking   = colDef(name = "Def Ranking", format = colFormat(digits = 0)),
-      
+
 #       STVoA_MeanRating  = colDef(name = "ST VoA Rating", format = colFormat(digits = 3),
 #                                 style = color_scales(FinalTable_Inter, colors = brewer.pal(11, "RdYlGn"))),
 #       STVoA_Ranking    = colDef(name = "ST Ranking", format = colFormat(digits = 0))
@@ -206,7 +231,7 @@ AllD1VoA <- read_csv("https://raw.githubusercontent.com/gshelor/CFB_VoA/refs/hea
 #   ) |>
 #   # 3. Add titles and footnotes via reactablefmtr
 #   add_title(title = paste(year, "CFB Vortex of Accuracy"), font_size = 26, font_weight = "bold") |>
-#   add_subtitle(subtitle = paste("Supremely Excellent Yet Salaciously Godlike And Infallibly Magnificent Vortex of Accuracy,", "current as of", as.character(Sys.Date())), 
+#   add_subtitle(subtitle = paste("Supremely Excellent Yet Salaciously Godlike And Infallibly Magnificent Vortex of Accuracy,", "current as of", as.character(Sys.Date())),
 #                font_size = 14, font_style = "italic", font_color = "#555") |>
 #   add_source("Table by @gshelor, Data from CFBfastR", font_size = 12)
 
@@ -237,15 +262,25 @@ AllD1VoA <- read_csv("https://raw.githubusercontent.com/gshelor/CFB_VoA/refs/hea
 
 ### Explicitly select, reorder, and drop columns to replicate cols_hide()
 FBS_display_df <- FBSVoA |>
-  select(school, VoA_Rating_Ovr, VoA_Ranking_Ovr, OffVoA_MeanRating, OffVoA_Ranking, DefVoA_MeanRating, DefVoA_Ranking, STVoA_MeanRating, STVoA_Ranking) |>
+  select(
+    school,
+    VoA_Rating_Ovr,
+    VoA_Ranking_Ovr,
+    OffVoA_MeanRating,
+    OffVoA_Ranking,
+    DefVoA_MeanRating,
+    DefVoA_Ranking,
+    STVoA_MeanRating,
+    STVoA_Ranking
+  ) |>
   arrange(desc(VoA_Rating_Ovr))
 
-# 2. Define custom color palettes using RColorBrewer
+### Define custom color palettes using RColorBrewer
 # DT style helper expects a vector of colors and a corresponding vector of intervals
 # rdylgn_pal <- brewer.pal(11, "RdYlGn")
 # rdylgn_pal_rev <- rev(rdylgn_pal) # For defense where lower/different is better
 
-# 3. Create the interactive DataTable
+### Create the interactive DataTable
 VoA_DT_Table <- datatable(
   FBS_display_df,
   width = '100%',
@@ -264,9 +299,14 @@ VoA_DT_Table <- datatable(
   ),
   caption = htmltools::tags$caption(
     style = 'caption-side: top; text-align: left; color: #333; font-family: "Helvetica Neue", Arial, sans-serif;',
-    htmltools::tags$h2(style = 'margin-bottom: 0px; font-weight: bold;', paste(year, "FBS CFB Vortex of Accuracy")),
-    htmltools::tags$p(style = 'color: #555; font-style: italic; margin-top: 5px; margin-bottom: 15px;', 
-      "Supremely Excellent Yet Salaciously Godlike And Infallibly Magnificent Vortex of Accuracy")
+    htmltools::tags$h2(
+      style = 'margin-bottom: 0px; font-weight: bold;',
+      paste(year, "FBS CFB Vortex of Accuracy")
+    ),
+    htmltools::tags$p(
+      style = 'color: #555; font-style: italic; margin-top: 5px; margin-bottom: 15px;',
+      "Supremely Excellent Yet Salaciously Godlike And Infallibly Magnificent Vortex of Accuracy"
+    )
   ),
   options = list(
     # dom = "t",
@@ -286,35 +326,67 @@ VoA_DT_Table <- datatable(
   )
 ) |>
   # Round formatting
-  formatRound(columns = c(which(colnames(FBS_display_df) == "VoA_Rating_Ovr"), which(colnames(FBS_display_df) == "OffVoA_MeanRating"), which(colnames(FBS_display_df) == "DefVoA_MeanRating"), which(colnames(FBS_display_df) == "STVoA_MeanRating")), digits = 3) |>
-  formatRound(columns = c(which(colnames(FBS_display_df) == "VoA_Ranking_Ovr"), which(colnames(FBS_display_df) == "OffVoA_Ranking"), which(colnames(FBS_display_df) == "DefVoA_Ranking"), which(colnames(FBS_display_df) == "STVoA_Ranking")), digits = 0) |>
-  
+  formatRound(
+    columns = c(
+      which(colnames(FBS_display_df) == "VoA_Rating_Ovr"),
+      which(colnames(FBS_display_df) == "OffVoA_MeanRating"),
+      which(colnames(FBS_display_df) == "DefVoA_MeanRating"),
+      which(colnames(FBS_display_df) == "STVoA_MeanRating")
+    ),
+    digits = 3
+  ) |>
+  formatRound(
+    columns = c(
+      which(colnames(FBS_display_df) == "VoA_Ranking_Ovr"),
+      which(colnames(FBS_display_df) == "OffVoA_Ranking"),
+      which(colnames(FBS_display_df) == "DefVoA_Ranking"),
+      which(colnames(FBS_display_df) == "STVoA_Ranking")
+    ),
+    digits = 0
+  ) |>
+
   # Apply data color scales matching your original logic
   formatStyle(
     which(colnames(FBS_display_df) == "VoA_Rating_Ovr"),
     backgroundColor = styleInterval(
-      seq(min(FBS_display_df$VoA_Rating_Ovr, na.rm=TRUE), max(FBS_display_df$VoA_Rating_Ovr, na.rm=TRUE), length.out = 10),
+      seq(
+        min(FBS_display_df$VoA_Rating_Ovr, na.rm = TRUE),
+        max(FBS_display_df$VoA_Rating_Ovr, na.rm = TRUE),
+        length.out = 10
+      ),
       brewer.pal(11, "RdYlGn")
     )
   ) |>
   formatStyle(
     which(colnames(FBS_display_df) == "OffVoA_MeanRating"),
     backgroundColor = styleInterval(
-      seq(min(FBS_display_df$OffVoA_MeanRating, na.rm=TRUE), max(FBS_display_df$OffVoA_MeanRating, na.rm=TRUE), length.out = 10),
+      seq(
+        min(FBS_display_df$OffVoA_MeanRating, na.rm = TRUE),
+        max(FBS_display_df$OffVoA_MeanRating, na.rm = TRUE),
+        length.out = 10
+      ),
       brewer.pal(11, "RdYlGn")
     )
   ) |>
   formatStyle(
     which(colnames(FBS_display_df) == "DefVoA_MeanRating"),
     backgroundColor = styleInterval(
-      seq(min(FBS_display_df$DefVoA_MeanRating, na.rm=TRUE), max(FBS_display_df$DefVoA_MeanRating, na.rm=TRUE), length.out = 10),
+      seq(
+        min(FBS_display_df$DefVoA_MeanRating, na.rm = TRUE),
+        max(FBS_display_df$DefVoA_MeanRating, na.rm = TRUE),
+        length.out = 10
+      ),
       rev(brewer.pal(11, "RdYlGn")) # Reversed for defense
     )
   ) |>
   formatStyle(
     which(colnames(FBS_display_df) == "STVoA_MeanRating"),
     backgroundColor = styleInterval(
-      seq(min(FBS_display_df$STVoA_MeanRating, na.rm=TRUE), max(FBS_display_df$STVoA_MeanRating, na.rm=TRUE), length.out = 10),
+      seq(
+        min(FBS_display_df$STVoA_MeanRating, na.rm = TRUE),
+        max(FBS_display_df$STVoA_MeanRating, na.rm = TRUE),
+        length.out = 10
+      ),
       brewer.pal(11, "RdYlGn")
     )
   )
@@ -328,20 +400,25 @@ htmltools::div(
            max-width: 150%; 
            margin: 20px auto; 
            box-sizing: border-box;",
-  # style = "background-color: #ffffff; 
-  #          padding: 25px; 
-  #          border-radius: 8px; 
-  #          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); 
+  # style = "background-color: #ffffff;
+  #          padding: 25px;
+  #          border-radius: 8px;
+  #          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   #          width: 100%;             /* Fits perfectly inside Quarto containers */
   #          max-width: 1200px;       /* Keeps it clean on extra ultra-wide monitors */
-  #          margin: 20px auto; 
+  #          margin: 20px auto;
   #          box-sizing: border-box;  /* Ensures padding doesn't push width over 100% */
   #          overflow-x: hidden;      /* Hard-safeguard to kill accidental scroll bars */",
   VoA_DT_Table,
-  htmltools::tags$p(style = 'font-size: 11px; color: #777; font-family: "Helvetica Neue", sans-serif; margin-top: 10px;', 
-                    paste("Table by Griffin Shelor, data from CFBfastR.", "Ratings current as of", as.character(Sys.Date())))
+  htmltools::tags$p(
+    style = 'font-size: 11px; color: #777; font-family: "Helvetica Neue", sans-serif; margin-top: 10px;',
+    paste(
+      "Table by Griffin Shelor, data from CFBfastR.",
+      "Ratings current as of",
+      as.character(Sys.Date())
+    )
+  )
 )
-
 ```
 
 
@@ -367,7 +444,17 @@ htmltools::div(
 
 ### Explicitly select, reorder, and drop columns to replicate cols_hide()
 FCS_display_df <- FCSVoA |>
-  select(school, VoA_Rating_Ovr, VoA_Ranking_Ovr, OffVoA_MeanRating, OffVoA_Ranking, DefVoA_MeanRating, DefVoA_Ranking, STVoA_MeanRating, STVoA_Ranking) |>
+  select(
+    school,
+    VoA_Rating_Ovr,
+    VoA_Ranking_Ovr,
+    OffVoA_MeanRating,
+    OffVoA_Ranking,
+    DefVoA_MeanRating,
+    DefVoA_Ranking,
+    STVoA_MeanRating,
+    STVoA_Ranking
+  ) |>
   arrange(desc(VoA_Rating_Ovr))
 
 # 2. Define custom color palettes using RColorBrewer
@@ -394,9 +481,14 @@ VoA_DT_Table <- datatable(
   ),
   caption = htmltools::tags$caption(
     style = 'caption-side: top; text-align: left; color: #333; font-family: "Helvetica Neue", Arial, sans-serif;',
-    htmltools::tags$h2(style = 'margin-bottom: 0px; font-weight: bold;', paste(year, "FCS CFB Vortex of Accuracy")),
-    htmltools::tags$p(style = 'color: #555; font-style: italic; margin-top: 5px; margin-bottom: 15px;', 
-      "Supremely Excellent Yet Salaciously Godlike And Infallibly Magnificent Vortex of Accuracy")
+    htmltools::tags$h2(
+      style = 'margin-bottom: 0px; font-weight: bold;',
+      paste(year, "FCS CFB Vortex of Accuracy")
+    ),
+    htmltools::tags$p(
+      style = 'color: #555; font-style: italic; margin-top: 5px; margin-bottom: 15px;',
+      "Supremely Excellent Yet Salaciously Godlike And Infallibly Magnificent Vortex of Accuracy"
+    )
   ),
   options = list(
     # dom = "t",
@@ -416,35 +508,67 @@ VoA_DT_Table <- datatable(
   )
 ) |>
   # Round formatting
-  formatRound(columns = c(which(colnames(FCS_display_df) == "VoA_Rating_Ovr"), which(colnames(FCS_display_df) == "OffVoA_MeanRating"), which(colnames(FCS_display_df) == "DefVoA_MeanRating"), which(colnames(FCS_display_df) == "STVoA_MeanRating")), digits = 3) |>
-  formatRound(columns = c(which(colnames(FCS_display_df) == "VoA_Ranking_Ovr"), which(colnames(FCS_display_df) == "OffVoA_Ranking"), which(colnames(FCS_display_df) == "DefVoA_Ranking"), which(colnames(FCS_display_df) == "STVoA_Ranking")), digits = 0) |>
-  
+  formatRound(
+    columns = c(
+      which(colnames(FCS_display_df) == "VoA_Rating_Ovr"),
+      which(colnames(FCS_display_df) == "OffVoA_MeanRating"),
+      which(colnames(FCS_display_df) == "DefVoA_MeanRating"),
+      which(colnames(FCS_display_df) == "STVoA_MeanRating")
+    ),
+    digits = 3
+  ) |>
+  formatRound(
+    columns = c(
+      which(colnames(FCS_display_df) == "VoA_Ranking_Ovr"),
+      which(colnames(FCS_display_df) == "OffVoA_Ranking"),
+      which(colnames(FCS_display_df) == "DefVoA_Ranking"),
+      which(colnames(FCS_display_df) == "STVoA_Ranking")
+    ),
+    digits = 0
+  ) |>
+
   # Apply data color scales matching your original logic
   formatStyle(
     which(colnames(FCS_display_df) == "VoA_Rating_Ovr"),
     backgroundColor = styleInterval(
-      seq(min(FCS_display_df$VoA_Rating_Ovr, na.rm=TRUE), max(FCS_display_df$VoA_Rating_Ovr, na.rm=TRUE), length.out = 10),
+      seq(
+        min(FCS_display_df$VoA_Rating_Ovr, na.rm = TRUE),
+        max(FCS_display_df$VoA_Rating_Ovr, na.rm = TRUE),
+        length.out = 10
+      ),
       brewer.pal(11, "RdYlGn")
     )
   ) |>
   formatStyle(
     which(colnames(FCS_display_df) == "OffVoA_MeanRating"),
     backgroundColor = styleInterval(
-      seq(min(FCS_display_df$OffVoA_MeanRating, na.rm=TRUE), max(FCS_display_df$OffVoA_MeanRating, na.rm=TRUE), length.out = 10),
+      seq(
+        min(FCS_display_df$OffVoA_MeanRating, na.rm = TRUE),
+        max(FCS_display_df$OffVoA_MeanRating, na.rm = TRUE),
+        length.out = 10
+      ),
       brewer.pal(11, "RdYlGn")
     )
   ) |>
   formatStyle(
     which(colnames(FCS_display_df) == "DefVoA_MeanRating"),
     backgroundColor = styleInterval(
-      seq(min(FCS_display_df$DefVoA_MeanRating, na.rm=TRUE), max(FCS_display_df$DefVoA_MeanRating, na.rm=TRUE), length.out = 10),
+      seq(
+        min(FCS_display_df$DefVoA_MeanRating, na.rm = TRUE),
+        max(FCS_display_df$DefVoA_MeanRating, na.rm = TRUE),
+        length.out = 10
+      ),
       rev(brewer.pal(11, "RdYlGn")) # Reversed for defense
     )
   ) |>
   formatStyle(
     which(colnames(FCS_display_df) == "STVoA_MeanRating"),
     backgroundColor = styleInterval(
-      seq(min(FCS_display_df$STVoA_MeanRating, na.rm=TRUE), max(FCS_display_df$STVoA_MeanRating, na.rm=TRUE), length.out = 10),
+      seq(
+        min(FCS_display_df$STVoA_MeanRating, na.rm = TRUE),
+        max(FCS_display_df$STVoA_MeanRating, na.rm = TRUE),
+        length.out = 10
+      ),
       brewer.pal(11, "RdYlGn")
     )
   )
@@ -458,20 +582,25 @@ htmltools::div(
            max-width: 150%; 
            margin: 20px auto; 
            box-sizing: border-box;",
-  # style = "background-color: #ffffff; 
-  #          padding: 25px; 
-  #          border-radius: 8px; 
-  #          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); 
+  # style = "background-color: #ffffff;
+  #          padding: 25px;
+  #          border-radius: 8px;
+  #          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   #          width: 100%;             /* Fits perfectly inside Quarto containers */
   #          max-width: 1200px;       /* Keeps it clean on extra ultra-wide monitors */
-  #          margin: 20px auto; 
+  #          margin: 20px auto;
   #          box-sizing: border-box;  /* Ensures padding doesn't push width over 100% */
   #          overflow-x: hidden;      /* Hard-safeguard to kill accidental scroll bars */",
   VoA_DT_Table,
-  htmltools::tags$p(style = 'font-size: 11px; color: #777; font-family: "Helvetica Neue", sans-serif; margin-top: 10px;', 
-                    paste("Table by Griffin Shelor, data from CFBfastR.", "Ratings current as of", as.character(Sys.Date())))
+  htmltools::tags$p(
+    style = 'font-size: 11px; color: #777; font-family: "Helvetica Neue", sans-serif; margin-top: 10px;',
+    paste(
+      "Table by Griffin Shelor, data from CFBfastR.",
+      "Ratings current as of",
+      as.character(Sys.Date())
+    )
+  )
 )
-
 ```
 
 
@@ -515,7 +644,7 @@ VoA_DT_Table <- datatable(
   colnames = c(
     "School" = "school",
     "Overall VoA Rating" = "VoA_Rating_Ovr",
-    "Overall VoA Ranking" = "VoA_Ranking_Ovr"#,
+    "Overall VoA Ranking" = "VoA_Ranking_Ovr" #,
     # "Off VoA Rating" = "OffVoA_MeanRating",
     # "Off VoA Ranking" = "OffVoA_Ranking",
     # "Def VoA Rating" = "DefVoA_MeanRating",
@@ -525,9 +654,14 @@ VoA_DT_Table <- datatable(
   ),
   caption = htmltools::tags$caption(
     style = 'caption-side: top; text-align: left; color: #333; font-family: "Helvetica Neue", Arial, sans-serif;',
-    htmltools::tags$h2(style = 'margin-bottom: 0px; font-weight: bold;', paste(year, "D1 CFB Vortex of Accuracy")),
-    htmltools::tags$p(style = 'color: #555; font-style: italic; margin-top: 5px; margin-bottom: 15px;', 
-      "Supremely Excellent Yet Salaciously Godlike And Infallibly Magnificent Vortex of Accuracy")
+    htmltools::tags$h2(
+      style = 'margin-bottom: 0px; font-weight: bold;',
+      paste(year, "D1 CFB Vortex of Accuracy")
+    ),
+    htmltools::tags$p(
+      style = 'color: #555; font-style: italic; margin-top: 5px; margin-bottom: 15px;',
+      "Supremely Excellent Yet Salaciously Godlike And Infallibly Magnificent Vortex of Accuracy"
+    )
   ),
   options = list(
     # dom = "t",
@@ -547,38 +681,48 @@ VoA_DT_Table <- datatable(
   )
 ) |>
   # Round formatting
-  formatRound(columns = c(which(colnames(AllD1_display_df) == "VoA_Rating_Ovr")), digits = 3) |> #, which(colnames(AllD1_display_df) == "OffVoA_MeanRating"), which(colnames(AllD1_display_df) == "DefVoA_MeanRating"), which(colnames(AllD1_display_df) == "STVoA_MeanRating")), digits = 3) |>
-  formatRound(columns = c(which(colnames(AllD1_display_df) == "VoA_Ranking_Ovr")), digits = 0) |> #, which(colnames(AllD1_display_df) == "OffVoA_Ranking"), which(colnames(AllD1_display_df) == "DefVoA_Ranking"), which(colnames(AllD1_display_df) == "STVoA_Ranking")), digits = 0) |>
-  
+  formatRound(
+    columns = c(which(colnames(AllD1_display_df) == "VoA_Rating_Ovr")),
+    digits = 3
+  ) |> #, which(colnames(AllD1_display_df) == "OffVoA_MeanRating"), which(colnames(AllD1_display_df) == "DefVoA_MeanRating"), which(colnames(AllD1_display_df) == "STVoA_MeanRating")), digits = 3) |>
+  formatRound(
+    columns = c(which(colnames(AllD1_display_df) == "VoA_Ranking_Ovr")),
+    digits = 0
+  ) |> #, which(colnames(AllD1_display_df) == "OffVoA_Ranking"), which(colnames(AllD1_display_df) == "DefVoA_Ranking"), which(colnames(AllD1_display_df) == "STVoA_Ranking")), digits = 0) |>
+
   # Apply data color scales matching your original logic
   formatStyle(
     which(colnames(AllD1_display_df) == "VoA_Rating_Ovr"),
     backgroundColor = styleInterval(
-      seq(min(AllD1_display_df$VoA_Rating_Ovr, na.rm=TRUE), max(AllD1_display_df$VoA_Rating_Ovr, na.rm=TRUE), length.out = 10),
+      seq(
+        min(AllD1_display_df$VoA_Rating_Ovr, na.rm = TRUE),
+        max(AllD1_display_df$VoA_Rating_Ovr, na.rm = TRUE),
+        length.out = 10
+      ),
       brewer.pal(11, "RdYlGn")
     )
   ) #|>
-  # formatStyle(
-  #   which(colnames(AllD1_display_df) == "OffVoA_MeanRating"),
-  #   backgroundColor = styleInterval(
-  #     seq(min(AllD1_display_df$OffVoA_MeanRating, na.rm=TRUE), max(AllD1_display_df$OffVoA_MeanRating, na.rm=TRUE), length.out = 10),
-  #     brewer.pal(11, "RdYlGn")
-  #   )
-  # ) |>
-  # formatStyle(
-  #   which(colnames(AllD1_display_df) == "DefVoA_MeanRating"),
-  #   backgroundColor = styleInterval(
-  #     seq(min(AllD1_display_df$DefVoA_MeanRating, na.rm=TRUE), max(AllD1_display_df$DefVoA_MeanRating, na.rm=TRUE), length.out = 10),
-  #     rev(brewer.pal(11, "RdYlGn")) # Reversed for defense
-  #   )
-  # ) |>
-  # formatStyle(
-  #   which(colnames(AllD1_display_df) == "STVoA_MeanRating"),
-  #   backgroundColor = styleInterval(
-  #     seq(min(AllD1_display_df$STVoA_MeanRating, na.rm=TRUE), max(AllD1_display_df$STVoA_MeanRating, na.rm=TRUE), length.out = 10),
-  #     brewer.pal(11, "RdYlGn")
-  #   )
-  # )
+# formatStyle(
+#   which(colnames(AllD1_display_df) == "OffVoA_MeanRating"),
+#   backgroundColor = styleInterval(
+#     seq(min(AllD1_display_df$OffVoA_MeanRating, na.rm=TRUE), max(AllD1_display_df$OffVoA_MeanRating, na.rm=TRUE), length.out = 10),
+#     brewer.pal(11, "RdYlGn")
+#   )
+# ) |>
+# formatStyle(
+#   which(colnames(AllD1_display_df) == "DefVoA_MeanRating"),
+#   backgroundColor = styleInterval(
+#     seq(min(AllD1_display_df$DefVoA_MeanRating, na.rm=TRUE), max(AllD1_display_df$DefVoA_MeanRating, na.rm=TRUE), length.out = 10),
+#     rev(brewer.pal(11, "RdYlGn")) # Reversed for defense
+#   )
+# ) |>
+# formatStyle(
+#   which(colnames(AllD1_display_df) == "STVoA_MeanRating"),
+#   backgroundColor = styleInterval(
+#     seq(min(AllD1_display_df$STVoA_MeanRating, na.rm=TRUE), max(AllD1_display_df$STVoA_MeanRating, na.rm=TRUE), length.out = 10),
+#     brewer.pal(11, "RdYlGn")
+#   )
+# )
 
 # Add your footnote container at the bottom
 htmltools::div(
@@ -589,18 +733,23 @@ htmltools::div(
            max-width: 150%; 
            margin: 20px auto; 
            box-sizing: border-box;",
-  # style = "background-color: #ffffff; 
-  #          padding: 25px; 
-  #          border-radius: 8px; 
-  #          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); 
+  # style = "background-color: #ffffff;
+  #          padding: 25px;
+  #          border-radius: 8px;
+  #          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   #          width: 100%;             /* Fits perfectly inside Quarto containers */
   #          max-width: 1200px;       /* Keeps it clean on extra ultra-wide monitors */
-  #          margin: 20px auto; 
+  #          margin: 20px auto;
   #          box-sizing: border-box;  /* Ensures padding doesn't push width over 100% */
   #          overflow-x: hidden;      /* Hard-safeguard to kill accidental scroll bars */",
   VoA_DT_Table,
-  htmltools::tags$p(style = 'font-size: 11px; color: #777; font-family: "Helvetica Neue", sans-serif; margin-top: 10px;', 
-                    paste("FBS ratings and AllD1 ratings are not meant to be compared directly. Table by Griffin Shelor, data from CFBfastR.", "Ratings current as of", as.character(Sys.Date())))
+  htmltools::tags$p(
+    style = 'font-size: 11px; color: #777; font-family: "Helvetica Neue", sans-serif; margin-top: 10px;',
+    paste(
+      "FBS ratings and AllD1 ratings are not meant to be compared directly. Table by Griffin Shelor, data from CFBfastR.",
+      "Ratings current as of",
+      as.character(Sys.Date())
+    )
+  )
 )
-
 ```
