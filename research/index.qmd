@@ -7,8 +7,7 @@ aliases:
 <!-- # Professional & Academic Work -->
 
 # Master's Thesis: Evaluating the Representation of Snow Sampling Sites in the Western U.S. and Alaska
-
-The full text can be found [here](https://unr.idm.oclc.org/login?url=https://www.proquest.com/pqdtlocal1006038/dissertations-theses/evaluating-representativeness-snow-sampling-sites/docview/3247618803/sem-2?accountid=452) and below is the abstract.
+The full text can be found [here](https://www.proquest.com/pqdtlocal1006038/dissertations-theses/evaluating-representativeness-snow-sampling-sites/docview/3247618803/sem-2?accountid=452) and below is the abstract.
 
 ::: {#fig-AOIs layout-ncol=2}
 
@@ -44,4 +43,8 @@ In my role with this project, I spent the summers of 2024 and 2025 investigating
 
 Maps showing accuracy by EPA Level III Ecoregion for machine learning models predicting precipitation phase based on citizen science observations from MRoS
 :::
+
+# A LIDAR-Based Approach to Derivative Map Production and Visualizing Bedrock Topography Within The Towns of Proctor and Pittsford, Vermont, USA
+
+As part of this project I georeferenced well data and utilized kriging to model exposed bedrock and Inverse Distance Weighting (IDW) to model potentiometric surface within the towns of Proctor and Pittsford, Vermont. This work was presented as a [poster](../media/NEARCPoster2018.pdf) at the 2018 Northeast Arc Users Group (NEARC) Conference in May 2018.
 
