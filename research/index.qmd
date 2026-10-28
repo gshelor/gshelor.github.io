@@ -46,5 +46,5 @@ Maps showing accuracy by EPA Level III Ecoregion for machine learning models pre
 
 # A LIDAR-Based Approach to Derivative Map Production and Visualizing Bedrock Topography Within The Towns of Proctor and Pittsford, Vermont, USA
 
-As part of this project I georeferenced well data and utilized kriging to model exposed bedrock and Inverse Distance Weighting (IDW) to model potentiometric surface within the towns of Proctor and Pittsford, Vermont. This work was presented as a [poster](../media/NEARCPoster2018.pdf) at the 2018 Northeast Arc Users Group (NEARC) Conference in May 2018.
+As part of this project, I georeferenced well data and utilized kriging to model exposed bedrock and Inverse Distance Weighting (IDW) to model potentiometric surface within the towns of Proctor and Pittsford, Vermont. This work was presented as a [poster](../media/NEARCPoster2018.pdf) at the 2018 Northeast Arc Users Group (NEARC) Conference at the University of Connecticut in Storrs, CT in May 2018.
 
