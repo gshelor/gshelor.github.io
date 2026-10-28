@@ -9,11 +9,18 @@ about:
       text: Email
       href: mailto:griffinshelor@gmail.com
     - icon: github
-      text: Github
+      text: GitHub
       href: https://github.com/gshelor
     - icon: linkedin
       text: LinkedIn
       href: https://www.linkedin.com/in/griffinshelor/
+    - icon: journals
+      text: Google Scholar
+      href: https://scholar.google.com/citations?user=WBNZ63oAAAAJ&hl=en&authuser=2
+    - icon: archive
+      text: ResearchGate
+      href: https://www.researchgate.net/profile/Griffin-Shelor
+
     # - icon: briefcase
     #   text: UNR Profile
     #   href: https://www.unr.edu/geography/people/griffin-shelor 
