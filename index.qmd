@@ -20,6 +20,9 @@ about:
     - icon: archive
       text: ResearchGate
       href: https://www.researchgate.net/profile/Griffin-Shelor
+    - icon: flower3
+      text: ORCID
+      href: https://orcid.org/0009-0007-9712-1982
 
     # - icon: briefcase
     #   text: UNR Profile
